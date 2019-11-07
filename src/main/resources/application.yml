@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: rewritepath_route
+          uri: https://www.google.com/
+          predicates:
+            - Path=/foo/**
+            - Query= search
+          filters:
+            - RewritePath=/foo/(?<segment>.*), /$\{segment}
